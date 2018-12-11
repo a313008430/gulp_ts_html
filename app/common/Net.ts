@@ -21,8 +21,8 @@ export class Api {
     /**领取奖励 */
     static gameReward:apiData = {name:'gameReward', url:baseUrl + '/user/game/accept'}
 
-    /**用户登陆 => 模拟登陆 */
-    static login: apiData = { name: 'login', url: baseUrl + '/user/login' }
+    /**用户登陆  */
+    static login: apiData = { name: 'login', url: baseUrl + '/weiXin/accessToken' }
     /** 用户信息 */
     static userInfo: apiData = { name: 'userInfo', url: baseUrl + '/user/info' }
 

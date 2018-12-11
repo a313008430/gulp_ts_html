@@ -7,6 +7,7 @@
     height: 100%;
     overflow-y: auto;
     margin: 0 auto;
+    overflow-x: hidden
 }
 
 /******导航*****/
@@ -35,6 +36,12 @@
     text-align: right;
     color: #EC4A58;
     font-size: .28rem;
+}
+.collect-edit-box em{
+    height: 0.7rem;
+    line-height: 0.7rem;
+    display: inline-block;
+    width: 2rem;
 }
 
 /******商品列表*****/

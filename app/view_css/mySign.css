@@ -74,6 +74,7 @@
     border-color: #dadada;
     width:1.28rem;
 }
+
 .mySign .sign-Days li .t{
     height: 0.38rem;
     line-height: 0.38rem;
@@ -139,6 +140,12 @@
 .mySign .sign-Days li:nth-child(4){
     margin-right: 0;
 }
+.mySign .sign-Days li:nth-child(3),.mySign .sign-Days li:nth-child(7){
+    width: 1.93rem;
+}
+.mySign .sign-Days li:nth-child(3).days-disable,.mySign .sign-Days li:nth-child(7).days-disable{
+    background: url(../res/daysBig-disable.png) no-repeat 0 0 / 1.93rem 1.57rem;
+}
 .mySign .sign-Days li:nth-child(5){
     margin-left: 0.78rem;
 }
@@ -166,7 +173,7 @@
     width: 7.14rem;
     height: 7.88rem;
     position: fixed;
-    top: 50%;
+    top:-50%;
     left: 50%;
     margin: -3.94rem 0 0 -3.57rem;
     z-index: 1001;
@@ -212,6 +219,11 @@
 .signDialog .mySign .sign-Days li.days-small .signicon,.signDialog .mySign .sign-Days li.days-big .signicon,.signDialog .mySign .sign-Days li.days-disable .signicon{
     background-size: 0.5rem 0.5rem;
 }
+
+.signDialog .mySign .sign-Days li:nth-child(3).days-disable,.signDialog .mySign .sign-Days li:nth-child(7).days-disable{
+    background: url(../res/daysBig-disable.png) no-repeat 0 0 / 1.78rem 1.45rem;
+}
+
 .signDialog .sinBtn{
     background: #EC4A58;
     width: 4.86rem;
@@ -232,11 +244,13 @@
     0% {
         transform: translate3d(0,-100%,0);
         opacity: 0;
+        top:-50%;
     }
 
     to {
         opacity:1;
-        transform: translateZ(0)
+        transform: translateZ(0);
+        top:50%;
     }
 }
 

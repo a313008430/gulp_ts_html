@@ -20,8 +20,6 @@ export default class MySign extends ViewBase {
             return a.id - b.id;
         });
         this.getSignList(signOrder, sign['dayList']);
-
-
     }
 
     /**

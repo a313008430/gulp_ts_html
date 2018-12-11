@@ -61,11 +61,11 @@ export default class IndexLogic extends ViewBase {
             Core.viewManager.openView(ViewConfig.recharge);
         });
 
-        //用户信息
-        let userInfo = await Net.getData(Api.userInfo);
-        let coin: any = userInfo['coin'] / 100;
-        let coins: any = parseInt(coin);
-        $(".rechargeBtn em").text(coins);
+        // //用户信息
+        // let userInfo = await Net.getData(Api.userInfo);
+        // let coin: any = userInfo['coin'] / 100;
+        // let coins: any = parseInt(coin);
+        // $(".rechargeBtn em").text(coins);
 
         //设置房间列表
         let roomList = await Net.getData(Api.roomList, { themeId: 0, page: 0 })

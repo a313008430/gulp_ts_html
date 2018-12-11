@@ -1,3 +1,6 @@
+#orderSubmit,#orderDetail{
+    background: #fff;
+}
 .orderdetailBox .orderaddress{
     width: 7.5rem;
     height: 1.95rem;
@@ -46,7 +49,7 @@
 }
 .orderdetailBox .orderBody .custIcon i.icon{
     width: .54rem;
-    height: .54rem;
+    height: .52rem;
     background-position: -1.85rem -3.23rem; 
     position: absolute;
     top: .26rem;

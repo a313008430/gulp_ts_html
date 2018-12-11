@@ -30,9 +30,6 @@ export default class MyOrder extends ViewBase {
         let OrderList = await Net.getData(Api.OrderList);
         let awardsBox = await Net.getData(Api.awardsBox);
         this.setOrderList(OrderList, awardsBox);
-
-
-
     }
 
 
@@ -63,8 +60,8 @@ export default class MyOrder extends ViewBase {
             let orderGoods = goodId.sort(function (a, b) {   //倒序
                 return b - a;
             });
-            for (let z = 0; z < orderGoods.length; z++) {
-                if (orderGoods[z] == awardsBox[z]['id']) {
+            for (let z = 0; z < awardsBox.length; z++) {
+                if (orderGoods.indexOf(parseInt(awardsBox[z]['id']))!=-1) {
                     html += `<div class="infot" data-sn='${OrderList[x]['sn']}' data-id="${num[x]}">
                                                 <div class="pic"><img src="${Config.imgBase + awardsBox[z]['src']}" /></div>
                                                 <div class="info">

@@ -7,7 +7,6 @@ import Config from "../../common/Config";
 import Utils from "../../core/Utils";
 
 
-
 export default class OrderDetail extends ViewBase {
 
     async onEnable() {
@@ -21,8 +20,13 @@ export default class OrderDetail extends ViewBase {
             dataType: 'script'
         });
 
+        await Utils.ajax({
+            url: '/src/clipboard.min.js',
+            dataType: 'script'
+        });
+       
+
         //订单详情
-        console.log(this.dataSource)
         let awardsBox = await Net.getData(Api.awardsBox);  
         let orderNum = this.dataSource['orderNum'];
         let OrderInfo = await Net.getData(Api.OrderInfo, {
@@ -30,6 +34,11 @@ export default class OrderDetail extends ViewBase {
         });
         this.orderList(OrderInfo['addressInfo'],OrderInfo['orderInfo']);
         this.awardsGood(awardsBox,OrderInfo['goodLists']);
+        
+        $("#distrInformTion").on("click",'#copyBtn',function(){
+            
+            console.log(11111)
+        })
     }
 
     /**
@@ -78,8 +87,8 @@ export default class OrderDetail extends ViewBase {
         //下单信息
         let orderHtml=`<dd class="tip">
                         订单编号：
-                        <span class="wl">${OrderInfo['sn']}</span>
-                        <span class="fz">复制</span>
+                        <span id="txt" class="wl">${OrderInfo['sn']}</span>
+                        <span id="copyBtn" class="fz" data-clipboard-action="copy" data-clipboard-text="213312313">复制</span>
                     </dd>
                     <dd class="tip">
                         订单时间：
@@ -94,15 +103,15 @@ export default class OrderDetail extends ViewBase {
     private awardsGood(awardsBox: any,goodLists: any) {
         let html = '' 
         let goodId=[];
+        
         for(let x=0;x<goodLists.length;x++){
             goodId.push(parseInt(goodLists[x]['user_goods_id']));
-        }
-        
+        } 
         let orderGoods = goodId.sort(function (a, b) {
             return b-a;
         });
-        for (let x = 0; x < awardsBox.length; x++) {
-            if(orderGoods[x]==awardsBox[x]['id']){
+        for (let x = 0; x < awardsBox.length; x++) {  
+            if(orderGoods.indexOf(parseInt(awardsBox[x]['id']))!=-1){
                 html+=`<li class="item">
                         <div class="imgbox">
                             <img src="${Config.imgBase+awardsBox[x]['src']}" alt="">
@@ -115,9 +124,8 @@ export default class OrderDetail extends ViewBase {
         }
         $("#comList").html(html);
     }
- 
 
-    onClick(e) {
-        console.log(e)
+    onClick(e: Event) {
+
     }
 } 

@@ -1,4 +1,7 @@
 /******消息详情*****/
+#newsInfo{
+    background: #fff;
+}
 .newsInfo{
     padding: 0 0.3rem;
 }

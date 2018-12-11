@@ -6,7 +6,9 @@ import ViewConfig from "./common/ViewConfig";
 import Utils from "./core/Utils";
 import { Net, Api } from "./common/Net";
 import UserData from "./common/UserData";
+import Config from "./common/Config";
 
+let baseUrl = Config.baseUrl;
 
 /**
  * 入口
@@ -31,20 +33,30 @@ class Main {
         Core.route.init();
         this.update();
 
-        $('#personalBtn').on('click', () => {
-            if (Data.isLogin) {
-                if ($('#bottomNav').find('.personal').hasClass('cur')) {
-                    return;
-                }
-                Core.viewManager.openView(ViewConfig.personal);
-                window.history.pushState(null, null, '#personal');//临时用，后期优化                
-            } else {
-                alert('请先登陆');
-            }
+        let userInfo= await Net.getData(Api.userInfo);
+        UserData.data = userInfo;
+        if(!userInfo){
+            location.href= baseUrl + '/weiXin/accessToken';
+        }
+
+        $('#personalBtn').on('click', async () => {
+            
+          
+
+            // await Net.getData(Api.login);
+            // if (Data.isLogin) {
+            //     if ($('#bottomNav').find('.personal').hasClass('cur')) {
+            //         return;
+            //     }
+            //     Core.viewManager.openView(ViewConfig.personal);
+            //     window.history.pushState(null, null, '#personal');//临时用，后期优化                
+            // } else {
+            //     alert('请先登陆');
+            // }
         });
 
-        await Net.getData(Api.login, { uid: 1 });//模拟登陆
-        Data.isLogin = true;
+        
+      //  Data.isLogin = true;
 
         // UserData.data = userInfo;
         // //用户信息映射 值转换

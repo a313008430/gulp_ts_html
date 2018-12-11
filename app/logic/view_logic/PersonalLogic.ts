@@ -12,7 +12,7 @@ export default class PersonalLoogic extends ViewBase {
         // Core.viewManager.closeView(Core.preView);
 
         //更新底部导航状态
-        Core.eventManager.event(EventType.updateBottomNav, { hide: true });
+        Core.eventManager.event(EventType.updateBottomNav, { type: 'personal' });
 
         //返回上一个界面 或是 上一步
         $('#goBack').on('click', () => {

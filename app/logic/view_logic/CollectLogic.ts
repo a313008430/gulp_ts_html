@@ -110,7 +110,7 @@ export default class CollectLogic extends ViewBase {
 
         //立即查看
         $("#favArticleList").on("click", '.btn_red', function () {
-            location.href = '#newsContent?id=' + $(this).parent().parent().data('id');
+            Core.viewManager.openView(ViewConfig.newsContent,$(this).parent().parent().data('id'));
         })
     }
 
