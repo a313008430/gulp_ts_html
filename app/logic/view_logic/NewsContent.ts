@@ -39,11 +39,40 @@ export default class NewsContent extends ViewBase {
          if(this.favNum['collect']==1){
             $("#fav").addClass("shareCur");
          }
-         
+         await Utils.ajax({
+            url: '/src/jweixin-1.4.0.js',
+            dataType:'script'
+        });
 
+        //微信分享
+        let wxJsdk = await Net.getData(Api.wxJsdk);  
+        let href=window.location.href;
+         
+        wx.config({
+            //debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            appId: wxJsdk['appId'], // 必填，公众号的唯一标识
+            timestamp:wxJsdk['timestamp'], // 必填，生成签名的时间戳
+            nonceStr:wxJsdk['nonceStr'], // 必填，生成签名的随机串
+            signature: wxJsdk['signature'],// 必填，签名
+            jsApiList: ['updateAppMessageShareData'] // 必填，需要使用的JS接口列表
+        })
+
+        wx.ready(function () {   
+            wx.updateAppMessageShareData({ 
+                title: '11', // 分享标题
+                desc: '111', // 分享描述
+                link: href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: 'http://img.okwan.com/kaixinwan/2018/06/04abff6207f2584c4f43e22e296520a3.png', // 分享图标
+                success: function () {
+                    // 设置成功
+                    console.log("哈哈哈");
+                }
+            })
+        })
+    
          //用户分享文章
-         $("#shareA").click(async() =>{
-            location.href= baseUrl + '/weiXin/jsdk';
+         $("#shareA").click(async() =>{  
+             console.log("微信分享提示")         
             let share = this.node.find("#shareA");
             share.addClass("shareCur");
             let articleShare = await Net.getData(Api.articleShare,{id:articleId});
