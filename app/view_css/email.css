@@ -66,10 +66,12 @@
 
 .item-list li .content .detail {
     float: right;
-    margin-top: 0.3rem;
+    margin-top: 0.22rem;
     margin-right: 0.18rem;
     font-size: 0.24rem;
     color: #747474;
+    width: 1rem;
+    height: 0.5rem;
 }
 
 .item-list li .content .detail_btn {

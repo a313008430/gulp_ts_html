@@ -25,14 +25,21 @@ export default class AddressLogic extends ViewBase {
          //奖品柜列表id
          this.orderId=[];
          this.orderId=this.dataSource ? this.dataSource.orderlistId : [];
-
-        console.log(this.dataSource.orderlistId )
        
         $('#goBack').on('click', () => {
             Core.viewManager.openView(ViewConfig.addresses,{
                 orderlistId:this.orderId
             });
         })
+
+        await Utils.ajax({
+            url:'/src/address.js',
+            dataType:'script'
+        });
+        await Utils.ajax({
+            url: '/src/picker.min.js',
+            dataType:'script'
+        });
 
         this.cityPicke = new Picker();
 
@@ -107,9 +114,9 @@ export default class AddressLogic extends ViewBase {
      * 错误提示弹窗隐藏
      */
     private errorTip() {
-        setTimeout(() => {
-            $("#toast").remove();
-        }, 1000);
+        // setTimeout(() => {
+        //     $("#toast").remove();
+        // }, 1000);
     }
 
 }

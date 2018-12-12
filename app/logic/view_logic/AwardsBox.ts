@@ -51,10 +51,9 @@ export default class AwardsBox extends ViewBase {
             for(let x=0;x<item.length;x++){
                 let itemCheck = $(item[x]).find(".gou");
                 if(itemCheck.hasClass("sel")==true){
-                    //orderId[x]=$(item[x]).data("id");
                     orderId.push($(item[x]).data("id"));
                 }
-            }
+            } 
             Core.viewManager.openView(ViewConfig.orderSubmit,{
                 orderlistId: orderId
             });
@@ -69,7 +68,7 @@ export default class AwardsBox extends ViewBase {
     private awardsGood(awardsBox: any) {
         let html = ''
         for (let x = 0; x < awardsBox.length; x++) {
-            html += `<div class="item" data-id="${awardsBox[x]['id']}">
+            html += `<div class="item" data-id="${awardsBox[x]['goods_id']}">
                     <div class="goubox">
                         <div class="gou icon"></div>
                     </div>
@@ -126,7 +125,7 @@ export default class AwardsBox extends ViewBase {
      * 设置懒加载 
      */
     private setLazyLoad() {
-        lazyload(document.querySelectorAll(".lazy"));
+        lazyload($(".lazy"));
     }
 
     onClick(e: Event) {

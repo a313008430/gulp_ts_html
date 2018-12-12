@@ -41,7 +41,7 @@ export default class PersonalLoogic extends ViewBase {
         let coin: any = userInfo['coin'] / 100;
         let coins: any = parseInt(coin);
         html=`<div class="headport">
-                 <img src="${Config.imgBase + userInfo['avatar']}" alt="">
+                 <img src="${userInfo['avatar'].indexOf("http")!='-1' ? userInfo['avatar'] : Config.imgBase + userInfo['avatar']}" alt="">
             </div>
             <div class="tit">
                 <h3>${userInfo['nick_name']}</h3>

@@ -5,6 +5,7 @@ import ViewConfig from "../../common/ViewConfig";
 import Utils from "../../core/Utils";
 import { Net, Api } from "../../common/Net";
 import Config from "../../common/Config";
+let baseUrl = Config.baseUrl;
 
 /**
  * 新闻内容页
@@ -35,7 +36,6 @@ export default class NewsContent extends ViewBase {
          //判断当前用户是否收藏该文章
          this.favNum = await Net.getData(Api.articleFav,{id:articleId,action:3});
          $("#fav").find("span").text(this.favNum['count']);
-         console.log(this.favNum['collect']);
          if(this.favNum['collect']==1){
             $("#fav").addClass("shareCur");
          }
@@ -43,6 +43,7 @@ export default class NewsContent extends ViewBase {
 
          //用户分享文章
          $("#shareA").click(async() =>{
+            location.href= baseUrl + '/weiXin/jsdk';
             let share = this.node.find("#shareA");
             share.addClass("shareCur");
             let articleShare = await Net.getData(Api.articleShare,{id:articleId});
@@ -144,7 +145,7 @@ export default class NewsContent extends ViewBase {
      * 设置懒加载 
      */
     private setLazyLoad() {
-        lazyload(document.querySelectorAll(".lazy"));
+        lazyload($(".lazy"));
     }
 
 

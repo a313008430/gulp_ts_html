@@ -48,14 +48,14 @@ export default class MyOrder extends ViewBase {
             num.push(x)
             html += `<li>
                     <div class="top">
-                        <p class="time">${OrderList[x]['time']}</p>
+                        <p class="time">${OrderList[x]['c_time']}</p>
                     </div>
                     <div class="con">
                         <div class="list">`
             let goodLists = OrderList[x]['goodLists'];  //订单
             let goodId = [];
             for (let y = 0; y < goodLists.length; y++) {           //订单id
-                goodId.push(parseInt(goodLists[y]['user_goods_id']));
+                goodId.push(parseInt(goodLists[y]['goods_id']));
             }
             let orderGoods = goodId.sort(function (a, b) {   //倒序
                 return b - a;

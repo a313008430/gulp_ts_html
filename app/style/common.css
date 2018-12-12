@@ -419,13 +419,13 @@
     display: block;
     width: 100%;
     float: left;
-    height: .26rem;
-    line-height: .26rem;
+    margin-top: 0.05rem;
+    line-height: 1;
   }
 
   .view-title .pay-btn .icon {
-    width: .44rem;
-    height: .32rem;
+    width: .32rem;
+    height: .33rem;
     background-position: -1.86rem -1.21rem;
     margin: 0;
   }

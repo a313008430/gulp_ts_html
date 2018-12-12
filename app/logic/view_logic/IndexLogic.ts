@@ -6,6 +6,7 @@ import EventType from "../../common/EventType";
 import Config from "../../common/Config";
 import { Net, Api } from "../../common/Net";
 import Data from "../../common/Data";
+import UserData from "../../common/UserData";
 
 export default class IndexLogic extends ViewBase {
 
@@ -30,7 +31,7 @@ export default class IndexLogic extends ViewBase {
             html = '';
         for (let x = 0, l = banner.length; x < l; x++) {
             if (!banner[x]['src']) continue;
-            html += `<em><a href="javascript:void(0);" lazy="${Config.imgBase + banner[x]['src']}"></a></em>`
+            html += `<em><a href="javascript:void(0);"><img class="lazy" data-src="${Config.imgBase + banner[x]['src']}"></a></em>`
         }
         this.template = Core.utils.replaceData('banner', this.template, html);
     }
@@ -61,11 +62,9 @@ export default class IndexLogic extends ViewBase {
             Core.viewManager.openView(ViewConfig.recharge);
         });
 
-        // //用户信息
-        // let userInfo = await Net.getData(Api.userInfo);
-        // let coin: any = userInfo['coin'] / 100;
-        // let coins: any = parseInt(coin);
-        // $(".rechargeBtn em").text(coins);
+        //用户信息
+         let coin: any =  UserData.coin ;
+        $(".rechargeBtn em").text(coin);
 
         //设置房间列表
         let roomList = await Net.getData(Api.roomList, { themeId: 0, page: 0 })
@@ -120,7 +119,7 @@ export default class IndexLogic extends ViewBase {
             if (!list[x]['src']) continue;
             html += `<li>
             <a href="javascript:void(0);" class="room-info" data-id="${list[x]['id']}">
-                <img class="lazy" src="" data-src="${Config.imgBase + list[x]['src']}" alt="">
+                <img class="lazy"  data-src="${Config.imgBase + list[x]['src']}" alt="">
             </a>
             <div class="item-msg">
                 <div class="left">
@@ -164,7 +163,7 @@ export default class IndexLogic extends ViewBase {
     private getSignList(list: any, dayList: any[]) {
         let html = '';
         let num;
-        if(dayList[0]['num']){
+        if(dayList.length>0 && dayList[0]['num']){
             num =parseInt(dayList[0]['num']);
         }
         for (let x = 0; x < list.length; x++) {
@@ -244,8 +243,8 @@ export default class IndexLogic extends ViewBase {
     /**
      * 设置懒加载 
      */
-    private setLazyLoad() {
-        lazyload(document.querySelectorAll(".lazy"));
+    private setLazyLoad() {   
+        lazyload($(".lazy"));
     }
 
     onClick(e: MouseEvent) {

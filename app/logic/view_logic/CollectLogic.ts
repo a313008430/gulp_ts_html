@@ -177,6 +177,6 @@ export default class CollectLogic extends ViewBase {
      * 设置懒加载 
      */
     private setLazyLoad() {
-        lazyload(document.querySelectorAll(".lazy"));
+        lazyload($(".lazy"));
     }
 }

@@ -29,7 +29,7 @@ export default class OrderSubmit extends ViewBase {
 
         //地址传参
         this.orderList = this.dataSource;
-
+       // console.log(this.orderList)
         //地址信息
         let addressList = await Net.getData(Api.addressList);
         await Utils.ajax({
@@ -92,8 +92,8 @@ export default class OrderSubmit extends ViewBase {
         let html1 = '';
         if (this.orderList.hasOwnProperty("cityAssress")) {
             for (let x = 0; x < awardsBox.length; x++) {
-                if (awardsBox[x]['id'] == this.orderList['orderlistId'][x]) {
-                    html1 += `<li class="item" data-id="${awardsBox[x]['id']}">
+                if (awardsBox[x]['goods_id'] == this.orderList['orderlistId'][x]) {
+                    html1 += `<li class="item" data-id="${awardsBox[x]['goods_id']}">
                                 <div class="imgbox">
                                     <img src="${Config.imgBase + awardsBox[x]['src']}">
                                 </div>
@@ -138,8 +138,8 @@ export default class OrderSubmit extends ViewBase {
         this.orderId = this.dataSource;
         let html = ''
         for (let x = 0; x < awardsBox.length; x++) {
-            if (this.orderId['orderlistId'].indexOf(parseInt(awardsBox[x]['id']))!=-1) {
-                html += `<li class="item" data-id="${awardsBox[x]['id']}">
+            if (this.orderId['orderlistId'].indexOf(parseInt(awardsBox[x]['goods_id']))!=-1) {
+                html += `<li class="item" data-id="${awardsBox[x]['goods_id']}">
                             <div class="imgbox">
                                 <img src="${Config.imgBase + awardsBox[x]['src']}">
                             </div>
@@ -159,17 +159,25 @@ export default class OrderSubmit extends ViewBase {
     private onError(data: any) {
         switch (data['api']) {
             case Api.goodsOrder.name:
-                $("#orderDialog").show();
-                $("#orderDialog .tit").text("订单提交失败");
+                this.orderFail();
                 $("#orderDialog .tips").text(data['data']['mes']);
+
                 break;
         }
     }
 
     /**
-     * 
+     * 订单提交失败
      * @param e 
      */
+    private orderFail(){
+        $("#orderDialog").show();
+        $("#orderDialog .tit").text("订单提交失败");
+        $(".surebtn").html("再逛逛").click(function(){
+            Core.viewManager.openView(ViewConfig.awardsBox);
+        })
+    }
+
 
 
     onClick(e) {

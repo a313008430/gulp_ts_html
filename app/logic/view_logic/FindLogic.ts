@@ -5,6 +5,7 @@ import EventType from "../../common/EventType";
 import ViewConfig from "../../common/ViewConfig";
 import Config from "../../common/Config";
 import { Net, Api } from "../../common/Net";
+import UserData from "../../common/UserData";
 
 
 /**
@@ -22,15 +23,15 @@ export default class FindLogic extends ViewBase {
     /**
      * 发现banner数据
      */
-    private setBanner(){
-        let banner: any[]=this.data['bannerList'],
-            html='';  
-        for(let x in banner){
-           if(!banner[x]['src']) return;
-            html +=`<em><a href="#alert" lazy="${Config.imgBase +banner[x]['src']}"></a></em>`
+    private setBanner() {
+        let banner: any[] = this.data['bannerList'],
+            html = '';
+        for (let x in banner) {
+            if (!banner[x]['src']) return;
+            html += `<em><a href="#alert"><img class="lazy" data-src="${Config.imgBase + banner[x]['src']}"></a></em>`
         }
-        this.template =Core.utils.replaceData('banner',this.template,html);
-        
+        this.template = Core.utils.replaceData('banner', this.template, html);
+
     }
 
 
@@ -47,10 +48,9 @@ export default class FindLogic extends ViewBase {
         Core.eventManager.event(EventType.updateBottomNav, { type: 'find' });
 
         //用户信息
-        let userInfo = await Net.getData(Api.userInfo);
-        let coin: any = userInfo['coin'] / 100;
-        let coins: any = parseInt(coin);
-        $(".rechargeBtn em").text(coins);
+        let coin: any =  UserData.coin ;
+        $(".rechargeBtn em").text(coin);
+
 
         //发现列表
         let findList = await Net.getData(Api.findList)
@@ -63,10 +63,10 @@ export default class FindLogic extends ViewBase {
      * 发现列表
      * @param list
      */
-    private setFindList(list: any[]){
-        let html='';
-        for(let x=0;x<list.length;x++){
-            html+=`<li data-id="${list[x]['id']}">
+    private setFindList(list: any[]) {
+        let html = '';
+        for (let x = 0; x < list.length; x++) {
+            html += `<li data-id="${list[x]['id']}">
                     <a href="javascript:void(0);">
                     <img class="lazy" src="" data-src="${Config.imgBase + list[x]['src']}" alt="">
                         <h3>${list[x]['title']}</h3>
@@ -75,25 +75,19 @@ export default class FindLogic extends ViewBase {
                 </li>`
         }
         $('#findList').html(html);
-        
+
         //打开发现列表详情
-        $('#findList').on('click','li',function(){
+        $('#findList').on('click', 'li', function () {
             Core.viewManager.openView(ViewConfig.newsContent, $(this).data('id'));
         })
-        
     }
 
     /**
      * 设置懒加载 
      */
     private setLazyLoad() {
-        lazyload(document.querySelectorAll(".lazy"));
+        lazyload($(".lazy"));
     }
-
-
-
-
-
 
     onClick(e: MouseEvent) {
         // console.log(e.target);

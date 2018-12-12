@@ -71,6 +71,7 @@ export default class RechargeLogic extends ViewBase {
      * @param bannerList 
      */
     private setBanner(bannerList: any) {
+        if (bannerList.length<=0) return; 
         let html = `<img class="lazy" data-src="${Config.imgBase + bannerList[0]['src']}" >`;
         $("#rechargeBanner").append(html);
     }
@@ -96,7 +97,7 @@ export default class RechargeLogic extends ViewBase {
      * 设置懒加载 
      */
     private setLazyLoad() {
-        lazyload(document.querySelectorAll(".lazy"));
+        lazyload($(".lazy"));
     }
 
     onClick(e) {

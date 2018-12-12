@@ -38,30 +38,28 @@ class Main {
         if(!userInfo){
             location.href= baseUrl + '/weiXin/accessToken';
         }
+        //用户信息映射 值转换
+        UserData.coin = parseInt(userInfo['coin']);
+        UserData.point = parseInt(userInfo['point']);
 
-        $('#personalBtn').on('click', async () => {
-            
-          
-
-            // await Net.getData(Api.login);
-            // if (Data.isLogin) {
-            //     if ($('#bottomNav').find('.personal').hasClass('cur')) {
-            //         return;
-            //     }
-            //     Core.viewManager.openView(ViewConfig.personal);
-            //     window.history.pushState(null, null, '#personal');//临时用，后期优化                
-            // } else {
-            //     alert('请先登陆');
-            // }
-        });
+        // $('#personalBtn').on('click', async () => {          
+        //     await Net.getData(Api.login);
+        //     if (Data.isLogin) {
+        //         if ($('#bottomNav').find('.personal').hasClass('cur')) {
+        //             return;
+        //         }
+        //         Core.viewManager.openView(ViewConfig.personal);
+        //         window.history.pushState(null, null, '#personal');//临时用，后期优化                
+        //     } else {
+        //         alert('请先登陆');
+        //     }
+        // });
 
         
       //  Data.isLogin = true;
 
         // UserData.data = userInfo;
-        // //用户信息映射 值转换
-        // UserData.coin = parseInt(userInfo['coin']);
-        // UserData.point = parseInt(userInfo['point']);
+        
 
     }
 
