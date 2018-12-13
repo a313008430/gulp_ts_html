@@ -36,7 +36,7 @@ export default class CollectLogic extends ViewBase {
         this.favArticleList(favList['list']);      
 
         //删除收藏文章列表
-        $("#favArticleList").on("click", '.del-btn', function () {
+        $("#favArticleList").on("click", '.del-btn', function (e) {
             $(".sureDialog").show();
             this.articleId = $(this).parent().data('id');
             $(".del").click(async()=> {
@@ -57,8 +57,52 @@ export default class CollectLogic extends ViewBase {
         let favRoomList = await Net.getData(Api.favRoomList)
         this.favRoomList(favRoomList['list']);
 
-        //删除收藏场次列表
-        $("#roomList").on("click", '.del-btn', function () {
+        /**
+         * 右滑删除
+         */
+        var expansion = null; //是否存在展开的list
+        let favListDel = $("#favArticleList li");
+        for(var i = 0; i < favListDel.length; i++){    
+            var x, y, X, Y, swipeX, swipeY;
+            favListDel[i].addEventListener('touchstart', function(event) {
+                if ( $(event.target).hasClass('del-btn') ) return
+
+                x = event.changedTouches[0].pageX;
+                y = event.changedTouches[0].pageY;
+                swipeX = true;
+                swipeY = true ;
+                if(expansion){   //判断是否展开，如果展开则收起
+                    expansion.className = "";
+                }        
+            })
+            favListDel[i].addEventListener('touchmove', function(event){       
+                X = event.changedTouches[0].pageX;
+                Y = event.changedTouches[0].pageY;        
+                // 左右滑动
+                if(swipeX && Math.abs(X - x) - Math.abs(Y - y) > 0){
+                    // 阻止事件冒泡
+                    event.stopPropagation();
+                    if(X - x > 10){   //右滑
+                        event.preventDefault();
+                        this.className = "";    //右滑收起
+                    }
+                    if(x - X > 10){   //左滑
+                        event.preventDefault();
+                        this.className = "edit";   //左滑展开
+                        expansion = this;
+                    }
+                    swipeY = false;
+                }
+                // 上下滑动
+                if(swipeY && Math.abs(X - x) - Math.abs(Y - y) < 0) {
+                    swipeX = false;
+                }        
+            });
+        }
+
+         //删除收藏场次列表
+
+         $("#roomList").on("click", '.del-btn', function () {
             $(".sureDialog").show();
             this.roomId= $(this).parent().data('id');
             $(".del").click(async()=> {
@@ -71,6 +115,8 @@ export default class CollectLogic extends ViewBase {
                 $(".sureDialog").hide();
             })
         })
+ 
+
 
         this.setLazyLoad();
 
@@ -78,9 +124,6 @@ export default class CollectLogic extends ViewBase {
 
     onClick(e: Event) {
         switch (e.target['className']) {
-            case 'edit-btn'://编辑功能
-                this.setEdit();
-                break;
             case 'cancle'://取消删除功能
                 this.cancle();
                 break;
@@ -110,7 +153,8 @@ export default class CollectLogic extends ViewBase {
 
         //立即查看
         $("#favArticleList").on("click", '.btn_red', function () {
-            Core.viewManager.openView(ViewConfig.newsContent,$(this).parent().parent().data('id'));
+            location.href = '#newsContent?id=' + $(this).parent().parent().data('id');
+            //Core.viewManager.openView(ViewConfig.newsContent,$(this).parent().parent().data('id'));
         })
     }
 
