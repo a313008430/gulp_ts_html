@@ -114,9 +114,9 @@ export default class AddressLogic extends ViewBase {
      * 错误提示弹窗隐藏
      */
     private errorTip() {
-        // setTimeout(() => {
-        //     $("#toast").remove();
-        // }, 1000);
+        setTimeout(() => {
+            $("#toast").remove();
+        }, 1000);
     }
 
 }

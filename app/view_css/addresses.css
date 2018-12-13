@@ -14,12 +14,15 @@
 .item-list .wrapper {
     position: relative;
     background-color: #fff;
-    max-width: 7.5rem;
+    width: 7.5rem;
     height: 1.33rem;
     margin: 0.23rem 0 0.13rem 0;
+    padding: 0.17rem 0;
+    display: table;
     transition: transform 0.3s ease;
     line-height: 1;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .item-list li .left {
@@ -35,17 +38,17 @@
     height: 0.55rem;
     background-position: -1.24rem -3.23rem;
     margin-left: 0.3rem;
-    margin-right: 0.2rem;
 }
 
 .item-list li .content {
-    margin-right: 1rem;
-    line-height: 1;
+    display: table-cell;
+    vertical-align: middle;
+    width: 5.54rem;
+    margin-left: 0.18rem;
 }
 
 .item-list li .content .info {
     height: 0.44rem;
-    margin-top: 0.1rem;
 }
 
 .item-list li .content .name {
@@ -62,7 +65,6 @@
     color: #333;
     font-size: 0.28rem;
     line-height: 0.4rem;
-
     overflow:hidden;
     text-overflow:ellipsis;
     display:-webkit-box;
@@ -78,19 +80,16 @@
 }
 
 .item-list li .right {
-    float: right;
-    height: 0.96rem;
-    margin-top: 0.18rem;
     border-left: 1px solid #747474;
+    padding-right: 0.3rem;
+    display: table-cell;
+    vertical-align: middle;
 }
 
-.item-list li .right span {
-    display: inline-block;
-    line-height: 0.96rem;
-    margin-right: 0.3rem;
-    margin-left: 0.1rem;
+.item-list li .right span {   
     color: #747474;
     font-size: 0.28rem;
+    margin-left: 0.09rem;
 }
 
 .add_addr_btn {

@@ -31,7 +31,7 @@ export default class IndexLogic extends ViewBase {
             html = '';
         for (let x = 0, l = banner.length; x < l; x++) {
             if (!banner[x]['src']) continue;
-            html += `<em><a href="javascript:void(0);"><img class="lazy" data-src="${Config.imgBase + banner[x]['src']}"></a></em>`
+            html += `<em><a href="javascript:void(0);" lazy="${Config.imgBase + banner[x]['src']}"></a></em>`
         }
         this.template = Core.utils.replaceData('banner', this.template, html);
     }
@@ -81,6 +81,7 @@ export default class IndexLogic extends ViewBase {
         //点击签到
         $(".sinBtn").click(async () => {
             let sign = await Net.getData(Api.signature, { action: 1 });
+            let goodInfo = sign['goodsInfo'];
             //签到成功操作
             if (sign) {
                 $('#signDialog').find(".signCon").remove();
@@ -90,7 +91,7 @@ export default class IndexLogic extends ViewBase {
                                     <span class="icon"></span>
                                     <span class="num">x10</span>
                                 </div>
-                                <p class="tips">恭喜您获得10欢乐币</p>
+                                <p class="tips">恭喜您${goodInfo['title']}</p>
                                 <div class="okayBtn">确定</div>
                             </div>`
                 $('#signDialog').append(html);

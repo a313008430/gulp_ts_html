@@ -43,13 +43,13 @@ export default class ViewConfig {
     /**测试页 */
     static alert: viewConfig = { name: 'alert', class: AlertLogic, skin: 'view/alert.html', closePre: true };
     /**充值 */
-    static recharge: viewConfig = { name: 'recharge', class: RechargeLogic, skin: 'view/recharge.html', closePre: false };
+    static recharge: viewConfig = { name: 'recharge', class: RechargeLogic, skin: 'view/recharge.html', closePre: true };
     /**充值成功 */
-    static rechargeSuccess: viewConfig = { name: 'rechargeSuccess', class: RechargeSuccess, skin: 'view/rechargeSuccess.html', closePre: false };
+    static rechargeSuccess: viewConfig = { name: 'rechargeSuccess', class: RechargeSuccess, skin: 'view/rechargeSuccess.html', closePre: true };
     /**充值记录 */
     static rechargeRecord: viewConfig = { name: 'rechargeRecord', class: RechargeRecordLogic, skin: 'view/rechargeRecord.html', closePre: false };
     /**好友代充 */
-    static friendRecharge: viewConfig = { name: 'friendRecharge', class: FriendRecharge, skin: 'view/friendRecharge.html', closePre: false };
+    static friendRecharge: viewConfig = { name: 'friendRecharge', class: FriendRecharge, skin: 'view/friendRecharge.html', closePre: true };
     /**积分兑 */
     static integral: viewConfig = { name: 'integral', class: IntegralLogic, skin: 'view/integral.html', closePre: true };
     /**我的订单*/

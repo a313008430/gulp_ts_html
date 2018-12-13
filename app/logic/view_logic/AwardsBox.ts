@@ -27,6 +27,7 @@ export default class AwardsBox extends ViewBase {
 
         //奖品柜
         let awardsBox = await Net.getData(Api.awardsBox);
+        if(awardsBox.length==0) return;
         this.awardsGood(awardsBox);             
 
         //勾选按钮

@@ -6,11 +6,13 @@ import ViewConfig from "../../common/ViewConfig";
 
 export default class RechargeSuccess extends ViewBase {
 
-    isCloseAnimation:boolean = true;
+    // isCloseAnimation:boolean = true;
 
     onEnable() {
-        
-        this.node.css({ zIndex: 300 });
+
+        $('#goBack').on('click', () => {
+            Core.viewManager.openView(ViewConfig.recharge);
+        })
 
         this.node.on('click', '.closeSelf', () => {
             Core.viewManager.closeView(ViewConfig.rechargeSuccess);

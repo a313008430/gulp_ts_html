@@ -13,16 +13,19 @@ export default class FriendRecharge extends ViewBase {
 
         this.setLazyLoad();
 
-        this.node.css({ zIndex: 200, 'height': '100%' });
-        //返回上一个界面 或是 上一步
         $('#goBack').on('click', () => {
-            if (Core.preView) {
-                window.location.href = '#' + Core.preView.name;
-            } else {
-                window.location.href = '#index';
-            }
+            Core.viewManager.openView(ViewConfig.personal);
+        })
 
-        });
+        //返回上一个界面 或是 上一步
+        // $('#goBack').on('click', () => {
+        //     if (Core.preView) {
+        //         window.location.href = '#' + Core.preView.name;
+        //     } else {
+        //         window.location.href = '#index';
+        //     }
+
+        // });
 
         //充值首页列表
         let recharge = await Net.getData(Api.recharge);
