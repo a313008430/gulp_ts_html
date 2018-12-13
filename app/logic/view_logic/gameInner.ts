@@ -30,7 +30,8 @@ export default class GameInner extends ViewBase {
         });
 
         //获取场次id
-        let roomId = this.dataSource;
+        // let roomId = this.dataSource;
+        let roomId = Utils.getValueByUrl('id');
         let roomInfo = await Net.getData(Api.roomInfo, { id: roomId });//获取房间详情
         this.setItemList(roomInfo['goodsList']);
         this.setBanner(roomInfo['bannerList']);

@@ -141,8 +141,8 @@ export default class IndexLogic extends ViewBase {
         $('#roomList').html(html);
         //打开场次详情
         $('#roomList').on('click', '.room-info', function () {
-            // location.href = '#gameInner?id=' + $(this).data('id');
-            Core.viewManager.openView(ViewConfig.gameInner, $(this).data('id'));
+            location.href = '#gameInner?id=' + $(this).data('id');
+            // Core.viewManager.openView(ViewConfig.gameInner, $(this).data('id'));
         });
     }
 
