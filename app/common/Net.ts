@@ -70,6 +70,8 @@ export class Api {
     static OrderInfo: apiData = { name: 'OrderInfo', url: baseUrl + '/user/order/info' }
     /**我的订单 */
     static OrderList: apiData = { name: 'OrderList', url: baseUrl + '/user/order' }
+    /**充值 */
+    static userPay: apiData = { name: 'userPay', url: baseUrl + '/user/pay' }
     /**jsdk调用 */
     static wxJsdk: apiData = { name: 'wxJsdk', url: baseUrl + '/weiXin/jsdk' }
 }

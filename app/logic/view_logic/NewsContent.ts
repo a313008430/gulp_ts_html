@@ -28,7 +28,7 @@ export default class NewsContent extends ViewBase {
         });
 
         //获取文章id
-        let articleId = this.dataSource;
+        let articleId = Utils.getValueByUrl('id');
         let articleInfo = await Net.getData(Api.articleInfo,{id:articleId});
         this.setArticleInfo(articleInfo);
         this.setShopList(articleInfo['advLits']);
@@ -65,19 +65,23 @@ export default class NewsContent extends ViewBase {
                 imgUrl: 'http://img.okwan.com/kaixinwan/2018/06/04abff6207f2584c4f43e22e296520a3.png', // 分享图标
                 success: function () {
                     // 设置成功
-                    console.log("哈哈哈");
+                    $(".shareDialog").hide();
                 }
             })
         })
     
          //用户分享文章
          $("#shareA").click(async() =>{  
-             console.log("微信分享提示")         
+             $(".shareDialog").show();      
             let share = this.node.find("#shareA");
             share.addClass("shareCur");
             let articleShare = await Net.getData(Api.articleShare,{id:articleId});
          })
-                
+
+         //关闭分享
+         $(".shareDialog").click(function(){
+            $(".shareDialog").hide();      
+         })       
 
         this.setLazyLoad();
     }
@@ -101,7 +105,7 @@ export default class NewsContent extends ViewBase {
         }else{
             this.favId=2;
         }
-       let articleFav = await Net.getData(Api.articleFav,{id:this.dataSource,action:this.favId}); 
+       let articleFav = await Net.getData(Api.articleFav,{id:Utils.getValueByUrl('id'),action:this.favId}); 
        fav.find("span").text(articleFav['count']);
     }
 

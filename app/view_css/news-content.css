@@ -6,6 +6,7 @@
     width: 6.9rem;
     overflow-y: auto;
     margin: 0 auto;
+    overflow-x: hidden;
 
     padding-bottom: .98rem;
 }
@@ -20,6 +21,9 @@
 .new-content p {
     font-size: .24rem;
     text-indent: .48rem;
+}
+.new-content img{
+    width: 100%;
 }
 
 .item-list {
@@ -201,4 +205,25 @@
     to {
         opacity: 1
     }
+}
+/****分享弹窗***/
+.shareDialog{
+ position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  display: none;
+ 
+}
+.shareDialog img{
+    position: absolute;
+    left:50%;
+    top:8%;
+    width: 4.7rem;
+    height: 4.38rem;
+    margin-left:-2.35rem;
+    z-index: 100;
 }

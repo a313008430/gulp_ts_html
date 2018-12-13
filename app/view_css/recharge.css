@@ -16,6 +16,8 @@
     margin:.3rem .22rem;
     background: url('../res/czbg.png') no-repeat top center;
     background-size: 7.1rem 7.77rem;
+    overflow-y: scroll;
+    height: 6rem;
 }
 .recMonList{
     padding-top: .98rem;

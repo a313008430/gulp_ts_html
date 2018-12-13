@@ -28,7 +28,7 @@ export default class FindLogic extends ViewBase {
             html = '';
         for (let x in banner) {
             if (!banner[x]['src']) return;
-            html += `<em><a href="#alert"><img class="lazy" data-src="${Config.imgBase + banner[x]['src']}"></a></em>`
+            html += `<em><a href="#alert" lazy="${Config.imgBase + banner[x]['src']}"></a></em>`
         }
         this.template = Core.utils.replaceData('banner', this.template, html);
 
@@ -66,10 +66,10 @@ export default class FindLogic extends ViewBase {
     private setFindList(list: any[]) {
         let html = '';
         for (let x = 0; x < list.length; x++) {
-            html += `<li data-id="${list[x]['id']}">
+            html += `<li data-id="${list[x]['id']}" >
                     <a href="javascript:void(0);">
                     <img class="lazy" src="" data-src="${Config.imgBase + list[x]['src']}" alt="">
-                        <h3>${list[x]['title']}</h3>
+                        <h3 class="${x%2==1 ? 'font-clipLine flexH' : 'font-clip'}">${list[x]['title']}</h3>
                         <span class="hot-status f18"><i class="icon"></i><em>${list[x]['browse']}</em></span>
                     </a>
                 </li>`
@@ -78,7 +78,7 @@ export default class FindLogic extends ViewBase {
 
         //打开发现列表详情
         $('#findList').on('click', 'li', function () {
-            Core.viewManager.openView(ViewConfig.newsContent, $(this).data('id'));
+            location.href = '#newsContent?id=' + $(this).data('id');
         })
     }
 

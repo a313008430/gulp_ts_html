@@ -39,8 +39,10 @@ class Main {
             location.href= baseUrl + '/weiXin/accessToken';
         }
         //用户信息映射 值转换
+        UserData.uid= userInfo['uid'];
         UserData.coin = parseInt(userInfo['coin']);
         UserData.point = parseInt(userInfo['point']);
+
 
         // $('#personalBtn').on('click', async () => {          
         //     await Net.getData(Api.login);
